@@ -28,12 +28,14 @@ public class Alphabet {
 			return calculateMin(includedCharacters);
 		}
 		
+		// Don't include any characters earlier than we already have
 		int onMinimum = Integer.MAX_VALUE;
 		if(lastChar < alphabetCharacters[depth]) {
 			includedCharacters[depth] = true;
 			onMinimum = process(includedCharacters, depth+1, alphabetCharacters[depth]);
 		}
 		
+		// Only go down false branch if the characters aren't next to one another (e.g., "ab" you skip, "ac" you don't)
 		int offMinimum = Integer.MAX_VALUE;
 		if(lastChar + 1 != alphabetCharacters[depth]) {
 			includedCharacters[depth] = false;
